@@ -1,0 +1,57 @@
+.card{
+    width: 100px;
+    height: 150px;
+    border-radius: 10px;
+    border: 2px solid black;
+    display: inline-block;
+    text-align: center;
+    font-size: 2em;
+    margin-top: 5px;
+
+}
+
+.card:hover{
+    background-color: #eaeaea;
+}
+
+.red{
+    color: red;
+}
+
+.black{
+    color: black;
+}
+
+.suit{
+    display: grid;
+    place-items: center;
+}
+
+#btnShuffle, #btnDraw{
+    width: 90px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+#cardDraw{
+    width: 180px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#btnHeader{
+    width: 550px;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}
+
+#mainHead{
+    /* border: 1px solid blue; */
+    width: 110%;
+    height: 100px;
+    text-align: right;
+}
