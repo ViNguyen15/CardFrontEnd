@@ -15,6 +15,7 @@ import Deck from './Deck.js';
     let club = '&#9827;';
 	let heart = '&#9829;';
 	let diamond = '&#9830;';
+    let player;
     let name = "";
 
 
@@ -61,7 +62,27 @@ import Deck from './Deck.js';
     }
 
     function load(){
-        console.log("loading")
+        name = document.getElementById("playerName").value;
+        if(name.length == 0){
+            console.log("load failed");
+            alert("name is blank");
+            return;
+        }
+
+        console.log("loading");
+        console.log(player);
+        for(let prop of player.players){
+            
+            if(prop.name === name){
+                console.log("name: ", prop.name);
+                hand = [];
+                for(let card of prop.card){
+                    console.log(card);
+                    hand.push(new Card(card.rank,card.suit));
+                }
+                renderHand();
+            }
+        }
     }
     
 
@@ -79,6 +100,7 @@ import Deck from './Deck.js';
             console.log(hand);
             renderHand();
         }
+
         
     }
 
@@ -143,12 +165,15 @@ import Deck from './Deck.js';
         }
     }
 
+    //GET
     async function logPlayers() {
         const response = await fetch("http://127.0.0.1:5000/players");
         const players = await response.json();
+        player = players;
         console.log(players);
     }
 
+    //POST
     async function postData(data) {
         let url = "http://127.0.0.1:5000/player"
         // Default options are marked with *
