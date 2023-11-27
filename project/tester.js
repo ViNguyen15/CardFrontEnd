@@ -1,6 +1,8 @@
 import Card from './Card.js';
 import Deck from './Deck.js';
 // let orderedList = [...Array(10).keys()];
+let urlGet = "http://50.116.42.178:5000/players";
+let urlPost = "http://50.116.42.178:5000/player";
 
     class PlayerInfo{
         constructor(name,cards){
@@ -85,7 +87,6 @@ import Deck from './Deck.js';
         }
     }
     
-
     function shuffle(){
         deck.shuffle();
         console.log(deck);
@@ -100,8 +101,6 @@ import Deck from './Deck.js';
             console.log(hand);
             renderHand();
         }
-
-        
     }
 
     function renderHeader(){
@@ -118,20 +117,16 @@ import Deck from './Deck.js';
         renderHeader();
         document.getElementById("mainBox").innerHTML = "";
         document.getElementById("mainBox").innerHTML += `
-        
-        <div id="btnHeader">
-            <button id="btnShuffle">Shuffle</button>
-            <button id="btnDraw">Draw</button>
-            <input type="number" id="cardDraw" value="1" />
-
-        </div>
+            <div id="btnHeader">
+                <button id="btnShuffle">Shuffle</button>
+                <button id="btnDraw">Draw</button>
+                <input type="number" id="cardDraw" value="1" />
+            </div>
         `;
-        
 
         document.getElementById("mainBox").innerHTML += `
             <div id="cardCanvas"></div>
         `;
-
     }
 
     function renderHand(){
@@ -167,7 +162,7 @@ import Deck from './Deck.js';
 
     //GET
     async function logPlayers() {
-        const response = await fetch("http://127.0.0.1:5000/players");
+        const response = await fetch(urlGet);
         const players = await response.json();
         player = players;
         console.log(players);
@@ -175,9 +170,9 @@ import Deck from './Deck.js';
 
     //POST
     async function postData(data) {
-        let url = "http://127.0.0.1:5000/player"
+        
         // Default options are marked with *
-        const response = await fetch(url, {
+        const response = await fetch(urlPost, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin
           cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
